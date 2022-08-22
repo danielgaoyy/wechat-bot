@@ -21,18 +21,19 @@ func MakeResponse(msg *openwechat.Message) {
 			return
 		}
 		fmt.Println("hit group chat")
+		var userName string
 		if !msg.IsSendBySelf() {
 			sender, err = msg.SenderInGroup()
+			userName = sender.UserName
 		} else {
-			sender = core.Self.User
-			fmt.Println(sender.UserName)
+			userName = "高小毛"
 		}
 
 		if err != nil {
 			fmt.Println("get sender failed")
 			return
 		}
-		ret, err := ProcessExercise(sender.UserName, msg.RowContent)
+		ret, err := ProcessExercise(userName, msg.RowContent)
 		if err != nil {
 			fmt.Printf("process exercise failed:%v\n", err)
 			return
