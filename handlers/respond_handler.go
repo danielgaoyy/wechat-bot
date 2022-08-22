@@ -38,7 +38,11 @@ func MakeResponse(msg *openwechat.Message) {
 			fmt.Printf("process exercise failed:%v\n", err)
 			return
 		}
-		_, _ = msg.ReplyText(ret)
+		if msg.IsSendBySelf() {
+			_, _ = group.SendText(ret)
+		} else {
+			_, _ = msg.ReplyText(ret)
+		}
 		return
 	}
 	if sender.RemarkName == "唐志卿" {

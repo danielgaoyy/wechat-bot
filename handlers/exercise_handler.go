@@ -24,10 +24,15 @@ type member struct {
 	current int64
 }
 
+var group *openwechat.Group
 var checkInRe, showRe, setRe, numberRe *regexp.Regexp
 
 func InitExerciseGroup() {
-	members, err := core.GetGroup("打卡").Members()
+	group = core.GetGroup("打卡")
+	if group == nil {
+		panic(errors.New("group not found"))
+	}
+	members, err := group.Members()
 	if err != nil {
 		panic(err)
 	}
