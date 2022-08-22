@@ -27,10 +27,7 @@ type member struct {
 var checkInRe, setRe *regexp.Regexp
 
 func InitExerciseGroup() {
-	if core.GetGroup("健身打卡") == nil {
-		return
-	}
-	members, err := core.GetGroup("健身打卡").Members()
+	members, err := core.GetGroup("打卡").Members()
 	if err != nil {
 		panic(err)
 	}

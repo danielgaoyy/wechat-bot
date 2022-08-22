@@ -39,5 +39,5 @@ func GetUser(userName string) *openwechat.Friend {
 }
 
 func GetGroup(remarkName string) *openwechat.Group {
-	return Groups.GetByRemarkName(remarkName)
+	return Groups.GetByNickName(remarkName)
 }
