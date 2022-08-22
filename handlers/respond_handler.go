@@ -12,7 +12,6 @@ func InitRespondHandler() {
 
 func MakeResponse(msg *openwechat.Message) {
 	sender, err := msg.Sender()
-	fmt.Println(sender.UserName)
 	if err != nil {
 		return
 	}
@@ -28,7 +27,7 @@ func MakeResponse(msg *openwechat.Message) {
 		_, _ = msg.ReplyText(ret)
 		return
 	}
-	if sender.UserName == "DylanJayeEloise" || sender.UserName == "Anonymous" {
+	if sender.NickName == "DylanJayeEloise" || sender.NickName == "Anonymous" {
 		fmt.Println("user name hit")
 		ProcessUnique(msg.RowContent)
 	}
