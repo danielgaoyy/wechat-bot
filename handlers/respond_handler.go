@@ -25,6 +25,7 @@ func MakeResponse(msg *openwechat.Message) {
 			sender, err = msg.SenderInGroup()
 		} else {
 			sender = core.Self.User
+			fmt.Println(sender.UserName)
 		}
 
 		if err != nil {
