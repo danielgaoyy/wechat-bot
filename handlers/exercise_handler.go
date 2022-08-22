@@ -36,6 +36,7 @@ func InitExerciseGroup() {
 	}
 	checkInRe = regexp.MustCompile(checkIn)
 	setRe = regexp.MustCompile(setTarget)
+	fmt.Println(exerciseMembers)
 }
 
 func ProcessExercise(userName string, msg string) (string, error) {
