@@ -14,7 +14,7 @@ var exerciseMembers []*member
 
 const (
 	checkIn   = `(打卡)\d+`
-	showAll   = "查看进度"
+	showAll   = `查看进度`
 	setTarget = `设目标\d+`
 )
 
@@ -24,7 +24,7 @@ type member struct {
 	current int64
 }
 
-var checkInRe, setRe *regexp.Regexp
+var checkInRe, showRe, setRe *regexp.Regexp
 
 func InitExerciseGroup() {
 	members, err := core.GetGroup("打卡").Members()
@@ -36,6 +36,7 @@ func InitExerciseGroup() {
 	}
 	checkInRe = regexp.MustCompile(checkIn)
 	setRe = regexp.MustCompile(setTarget)
+	showRe = regexp.MustCompile(showAll)
 	fmt.Println(exerciseMembers)
 }
 
@@ -65,7 +66,7 @@ func ProcessExercise(userName string, msg string) (string, error) {
 		}
 		return "目标设置成功", err
 	}
-	if msg == showAll {
+	if match := showRe.MatchString(msg); match {
 		return GetCurrent(), nil
 	}
 	return "", errors.New("unrecognized")
