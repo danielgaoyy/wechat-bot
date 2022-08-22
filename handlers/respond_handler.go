@@ -23,10 +23,12 @@ func MakeResponse(msg *openwechat.Message) {
 		fmt.Println("hit group chat")
 		sender, err = msg.SenderInGroup()
 		if err != nil {
+			fmt.Println("get sender failed")
 			return
 		}
 		ret, err := ProcessExercise(sender.UserName, msg.RowContent)
 		if err != nil {
+			fmt.Printf("process exercise failed:%v\n", err)
 			return
 		}
 		_, _ = msg.ReplyText(ret)
