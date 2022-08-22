@@ -12,6 +12,7 @@ func InitRespondHandler() {
 
 func MakeResponse(msg *openwechat.Message) {
 	sender, err := msg.Sender()
+	fmt.Println(sender.RemarkName)
 	if err != nil {
 		return
 	}
