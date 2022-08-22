@@ -29,7 +29,9 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(Groups)
+	for _, group := range Groups {
+		fmt.Println(group.RemarkName)
+	}
 }
 
 func GetUser(userName string) *openwechat.Friend {
