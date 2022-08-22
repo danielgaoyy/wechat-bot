@@ -30,7 +30,7 @@ func Init() {
 		panic(err)
 	}
 	for _, group := range Groups {
-		fmt.Println(group.RemarkName)
+		fmt.Println(group.UserName)
 	}
 }
 
