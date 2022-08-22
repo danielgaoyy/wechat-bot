@@ -16,9 +16,7 @@ func MakeResponse(msg *openwechat.Message) {
 	if err != nil {
 		return
 	}
-	if msg.IsComeFromGroup() {
-		fmt.Println(sender.UserName)
-	}
+
 	if msg.IsComeFromGroup() && msg.IsAt() && sender.UserName == "@@983ffcf99f42ad69651d7f733898bc017522c0ac21c1db7b5f5ca4f81240d0fa" {
 		fmt.Println("hit group chat")
 		sender, err = msg.SenderInGroup()
