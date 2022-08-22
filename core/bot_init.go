@@ -29,6 +29,7 @@ func Init() {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(Groups)
 }
 
 func GetUser(userName string) *openwechat.Friend {
