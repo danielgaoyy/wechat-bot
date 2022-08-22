@@ -21,7 +21,12 @@ func MakeResponse(msg *openwechat.Message) {
 			return
 		}
 		fmt.Println("hit group chat")
-		sender, err = msg.SenderInGroup()
+		if !msg.IsSendBySelf() {
+			sender, err = msg.SenderInGroup()
+		} else {
+			sender = core.Self.User
+		}
+
 		if err != nil {
 			fmt.Println("get sender failed")
 			return
