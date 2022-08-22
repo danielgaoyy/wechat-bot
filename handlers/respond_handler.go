@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"code.byted.org/gaozicheng/workout/core"
+	"fmt"
 	"github.com/eatmoreapple/openwechat"
 )
 
@@ -11,6 +12,7 @@ func InitRespondHandler() {
 
 func MakeResponse(msg *openwechat.Message) {
 	sender, err := msg.Sender()
+	fmt.Println(sender)
 	if err != nil {
 		return
 	}
