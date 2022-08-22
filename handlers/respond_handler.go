@@ -29,6 +29,9 @@ func MakeResponse(msg *openwechat.Message) {
 	}
 	if sender.NickName == "DylanJayeEloise" || sender.NickName == "Anonymous" {
 		fmt.Println("user name hit")
-		ProcessUnique(msg.RowContent)
+		ret, send := ProcessUnique(msg.RowContent)
+		if send || ret != "" {
+			_, _ = msg.ReplyText(ret)
+		}
 	}
 }
