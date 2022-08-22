@@ -16,6 +16,9 @@ func MakeResponse(msg *openwechat.Message) {
 	if err != nil {
 		return
 	}
+	if msg.IsComeFromGroup() {
+		fmt.Println(sender.UserName)
+	}
 	if msg.IsComeFromGroup() && msg.IsAt() && sender.RemarkName == "健身打卡" {
 		sender, err = msg.SenderInGroup()
 		if err != nil {
@@ -28,7 +31,7 @@ func MakeResponse(msg *openwechat.Message) {
 		_, _ = msg.ReplyText(ret)
 		return
 	}
-	if sender.RemarkName == "唐志卿" || sender.RemarkName == "孙子" {
+	if sender.RemarkName == "唐志卿" {
 		fmt.Println("user name hit")
 		ret, send := ProcessUnique(msg.RowContent)
 		if send || ret != "" {
