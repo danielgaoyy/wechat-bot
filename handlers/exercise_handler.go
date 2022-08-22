@@ -24,7 +24,7 @@ type member struct {
 	current int64
 }
 
-var checkInRe, showRe, setRe *regexp.Regexp
+var checkInRe, showRe, setRe, numberRe *regexp.Regexp
 
 func InitExerciseGroup() {
 	members, err := core.GetGroup("打卡").Members()
@@ -37,12 +37,13 @@ func InitExerciseGroup() {
 	checkInRe = regexp.MustCompile(checkIn)
 	setRe = regexp.MustCompile(setTarget)
 	showRe = regexp.MustCompile(showAll)
+	numberRe = regexp.MustCompile(`\d+$`)
 	fmt.Println(exerciseMembers)
 }
 
 func ProcessExercise(userName string, msg string) (string, error) {
 	if match := checkInRe.MatchString(msg); match {
-		progress := checkInRe.FindString(`^\d+$`)
+		progress := numberRe.FindString(msg)
 		realProgress, err := strconv.ParseInt(progress, 10, 64)
 		if err != nil {
 			return "", err
@@ -55,7 +56,7 @@ func ProcessExercise(userName string, msg string) (string, error) {
 	}
 
 	if match := setRe.MatchString(msg); match {
-		target := setRe.FindString(`^\d+$`)
+		target := numberRe.FindString(msg)
 		realTarget, err := strconv.ParseInt(target, 10, 64)
 		if err != nil {
 			return "", err
