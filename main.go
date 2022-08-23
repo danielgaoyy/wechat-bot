@@ -1,8 +1,8 @@
 package main
 
 import (
-	"code.byted.org/gaozicheng/workout/core"
-	"code.byted.org/gaozicheng/workout/handlers"
+	"github.com/gaozicheng/workout/core"
+	"github.com/gaozicheng/workout/handlers"
 )
 
 func main() {

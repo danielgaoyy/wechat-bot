@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"code.byted.org/gaozicheng/workout/core"
 	"fmt"
 	"github.com/eatmoreapple/openwechat"
+	"github.com/gaozicheng/workout/core"
 )
 
 func InitRespondHandler() {
